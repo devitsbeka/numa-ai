@@ -119,8 +119,8 @@ export function TextHighlighter({ text, className, onSkillClick }: TextHighlight
             key={index}
             delay={300}
             trigger="hover"
-            onHoverChange={(isHovered) => {
-              setHoveredSkillId(isHovered ? segment.skillId || null : null);
+            onOpenChange={(isOpen) => {
+              setHoveredSkillId(isOpen ? segment.skillId || null : null);
             }}
           >
             <button
@@ -172,10 +172,9 @@ export function TextHighlighter({ text, className, onSkillClick }: TextHighlight
                     <p className="text-xs text-white/80 line-clamp-2">{skill.description}</p>
                   </div>
                   
-                  <div className="flex items-center gap-2 pt-1 border-t border-white/10">
+                    <div className="flex items-center gap-2 pt-1 border-t border-white/10">
                     <AriaButton
                       onPress={(e) => {
-                        e.preventDefault();
                         handleTermClick(segment.skillId!, e as any);
                       }}
                       className="flex-1 px-2 py-1 text-xs font-medium text-white bg-white/10 hover:bg-white/20 rounded transition-colors outline-hidden"
@@ -185,7 +184,6 @@ export function TextHighlighter({ text, className, onSkillClick }: TextHighlight
                     {!isSaved && (
                       <AriaButton
                         onPress={(e) => {
-                          e.preventDefault();
                           handleAddToLearning(segment.skillId!, e as any);
                         }}
                         className="px-2 py-1 text-xs font-medium text-white bg-white/10 hover:bg-white/20 rounded transition-colors outline-hidden"

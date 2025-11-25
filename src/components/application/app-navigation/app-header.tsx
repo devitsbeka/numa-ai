@@ -30,9 +30,11 @@ interface AppHeaderProps {
     secondaryNavRight?: ReactNode;
     /** Callback to open filters modal */
     onFiltersClick?: () => void;
+    /** Count of custom recipes to display */
+    customRecipesCount?: number;
 }
 
-export const AppHeader = ({ secondaryNavLeft, secondaryNavCenter, secondaryNavTabs, secondaryNavRight, onFiltersClick }: AppHeaderProps) => {
+export const AppHeader = ({ secondaryNavLeft, secondaryNavCenter, secondaryNavTabs, secondaryNavRight, onFiltersClick, customRecipesCount }: AppHeaderProps) => {
     const pathname = usePathname();
     
     return (

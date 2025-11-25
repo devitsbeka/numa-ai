@@ -117,21 +117,22 @@ export function findCookingTerms(text: string): Array<{ term: string; skillId: s
 
   for (const cookingTerm of sortedTerms) {
     const pattern = createTermPattern(cookingTerm.term, cookingTerm.variations || []);
-    let match;
+    let match: RegExpExecArray | null;
     
     while ((match = pattern.exec(text)) !== null) {
+      const currentMatch = match;
       // Check if this match overlaps with an existing match
       const overlaps = matches.some(m => 
-        (match.index >= m.index && match.index < m.index + m.length) ||
-        (m.index >= match.index && m.index < match.index + match[0].length)
+        (currentMatch.index >= m.index && currentMatch.index < m.index + m.length) ||
+        (m.index >= currentMatch.index && m.index < currentMatch.index + currentMatch[0].length)
       );
       
       if (!overlaps) {
         matches.push({
-          term: match[0],
+          term: currentMatch[0],
           skillId: cookingTerm.skillId,
-          index: match.index,
-          length: match[0].length,
+          index: currentMatch.index,
+          length: currentMatch[0].length,
         });
       }
     }

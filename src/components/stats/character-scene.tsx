@@ -137,8 +137,13 @@ const TechParticles = ({ count = 50 }: { count?: number }) => {
                 
                 // Animate particles
                 const newY = y + Math.sin(time + i) * 0.1;
-                matrix.setPosition(x, newY, z);
-                matrix.scale(particle.scale, particle.scale, particle.scale);
+                
+                // Compose matrix from position, rotation (identity), and scale
+                matrix.compose(
+                    new THREE.Vector3(x, newY, z),
+                    new THREE.Quaternion(),
+                    new THREE.Vector3(particle.scale, particle.scale, particle.scale)
+                );
                 
                 meshRef.current!.setMatrixAt(i, matrix);
             });

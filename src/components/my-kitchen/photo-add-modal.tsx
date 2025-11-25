@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { X, Upload, ImageX } from "@untitledui/icons";
+import { X, Upload01, ImageX } from "@untitledui/icons";
 import { Button } from "@/components/base/buttons/button";
 import { Modal, ModalOverlay, Dialog } from "@/components/application/modals/modal";
 import { cx } from "@/utils/cx";
@@ -216,7 +216,7 @@ export function PhotoAddModal({ isOpen, onClose, onItemsRecognized }: PhotoAddMo
                   <Button
                     onClick={handleRecognize}
                     disabled={isRecognizing}
-                    loading={isRecognizing}
+                    isLoading={isRecognizing}
                     className="w-full"
                     size="lg"
                   >

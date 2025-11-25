@@ -152,7 +152,7 @@ export function SkillCard({ skillId, onClick, showActions = true, className }: S
             <span className="text-xs text-tertiary">Progress</span>
             <span className="text-xs font-medium text-primary">{progressValue}%</span>
           </div>
-          <ProgressBar value={progressValue} size="sm" />
+          <ProgressBar value={progressValue} />
         </div>
       )}
 
@@ -169,7 +169,7 @@ export function SkillCard({ skillId, onClick, showActions = true, className }: S
         <Button
           size="sm"
           color="primary"
-          onClick={(e) => {
+          onClick={(e: React.MouseEvent) => {
             e.stopPropagation();
             handleComplete(e);
           }}

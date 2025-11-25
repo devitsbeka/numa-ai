@@ -149,7 +149,7 @@ export default function MyKitchenPage() {
 
         {/* Tabs */}
         <Tabs selectedKey={activeTab} onSelectionChange={(key) => setActiveTab(key as TabType)} className="mb-6">
-          <TabList type="underline" size="md" fullWidth orientation="horizontal">
+          <TabList type="underline" size="md" fullWidth orientation="horizontal" items={[]}>
             <Tab id="stock">
               My Stock
               {totalItems > 0 && (

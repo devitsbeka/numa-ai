@@ -180,7 +180,7 @@ export function SkillDetailModal({ skillId, isOpen, onClose }: SkillDetailModalP
                   <span className="text-sm font-medium text-primary">Your Progress</span>
                   <span className="text-sm font-semibold text-primary">{progressValue}%</span>
                 </div>
-                <ProgressBar value={progressValue} size="md" className="mb-4" />
+                <ProgressBar value={progressValue} className="mb-4" />
                 <div className="flex items-center gap-2">
                   <Button
                     size="sm"

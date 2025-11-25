@@ -16,8 +16,8 @@ const createMockRecipe = (
   servings: 2,
   ingredients: [],
   instructions: [],
-  summary: "",
-  spoonacularId: id,
+  missingIngredients: [],
+  spoonacularId: Math.floor(Math.random() * 1000000),
 });
 
 // Generate a 7-day meal plan

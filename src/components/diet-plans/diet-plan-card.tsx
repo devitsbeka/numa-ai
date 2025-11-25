@@ -222,7 +222,7 @@ export function DietPlanCard({ dietPlan, onClick }: DietPlanCardProps) {
         {/* Tags */}
         <div className="flex flex-wrap gap-1.5 mb-3">
           {dietPlan.tags.slice(0, 3).map((tag) => (
-            <Badge key={tag} color="gray" size="xs">
+            <Badge key={tag} color="gray" size="sm">
               {tag}
             </Badge>
           ))}

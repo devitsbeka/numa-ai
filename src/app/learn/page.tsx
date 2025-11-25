@@ -124,7 +124,7 @@ export default function LearnPage() {
                 selectedKey={activeTab}
                 onSelectionChange={(key) => setActiveTab(key as TabType)}
               >
-                <TabList type="button-brand" size="sm">
+                <TabList type="button-brand" size="sm" items={[]}>
                   <Tab id="my-learning">My Learning</Tab>
                   <Tab id="discover">Discover</Tab>
                   <Tab id="categories">Categories</Tab>
@@ -155,7 +155,7 @@ export default function LearnPage() {
                   icon={SearchLg}
                   size="md"
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={setSearchQuery}
                   className="w-full"
                 />
               </div>
@@ -251,22 +251,24 @@ export default function LearnPage() {
               </div>
             ) : filteredSkills.length === 0 ? (
               // Empty State
-              <EmptyState
-                title={
-                  activeTab === "my-learning"
-                    ? "No skills yet"
-                    : searchQuery
-                    ? "No skills found"
-                    : "Start learning"
-                }
-                description={
-                  activeTab === "my-learning"
-                    ? "Add skills from recipes or browse the Discover tab to start your learning journey."
-                    : searchQuery
-                    ? "Try adjusting your search or filters to find what you're looking for."
-                    : "Click on cooking terms in recipes to learn new skills, or browse the Discover tab."
-                }
-              />
+              <EmptyState>
+                <EmptyState.Content>
+                  <EmptyState.Title>
+                    {activeTab === "my-learning"
+                      ? "No skills yet"
+                      : searchQuery
+                      ? "No skills found"
+                      : "Start learning"}
+                  </EmptyState.Title>
+                  <EmptyState.Description>
+                    {activeTab === "my-learning"
+                      ? "Add skills from recipes or browse the Discover tab to start your learning journey."
+                      : searchQuery
+                      ? "Try adjusting your search or filters to find what you're looking for."
+                      : "Click on cooking terms in recipes to learn new skills, or browse the Discover tab."}
+                  </EmptyState.Description>
+                </EmptyState.Content>
+              </EmptyState>
             ) : (
               // Skills Grid
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">

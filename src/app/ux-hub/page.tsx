@@ -309,7 +309,7 @@ export default function UxHubPage() {
               </p>
             </div>
             <Tabs defaultSelectedKey="flows">
-              <TabList type="button-brand" size="sm">
+              <TabList type="button-brand" size="sm" items={[]}>
                 <Tab id="flows">User Flows</Tab>
                 <Tab id="personas">Personas</Tab>
                 <Tab id="sitemap">Sitemap</Tab>
