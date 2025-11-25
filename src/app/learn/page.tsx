@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { SearchLg, Filter01 } from "@untitledui/icons";
+import { SearchLg } from "@untitledui/icons";
 import { AppHeader } from "@/components/application/app-navigation/app-header";
 import { Tab, TabList, Tabs } from "@/components/application/tabs/tabs";
 import { Input } from "@/components/base/input/input";
