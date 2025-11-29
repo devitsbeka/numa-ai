@@ -914,17 +914,28 @@ export const Dashboard15 = () => {
     // Meal search and filter state
     const [mealSearchText, setMealSearchText] = useState("");
     
-    // Handler to ensure mealSearchText is always a string
+    // Handler to ensure mealSearchText stays a string
     const handleMealSearchChange = useCallback((value: unknown) => {
-        // React Aria Input onChange passes the value directly as a string
-        // But we'll be defensive and ensure it's always a string
-        if (typeof value === 'string') {
+        if (typeof value === "string") {
             setMealSearchText(value);
-        } else if (value != null) {
-            setMealSearchText(String(value));
-        } else {
-            setMealSearchText('');
+            return;
         }
+
+        if (value && typeof value === "object") {
+            const maybeEvent = value as { target?: { value?: unknown } };
+            const targetValue = maybeEvent.target?.value;
+
+            if (typeof targetValue === "string") {
+                setMealSearchText(targetValue);
+                return;
+            }
+        }
+
+        if (value == null) {
+            setMealSearchText("");
+        }
+
+        // Ignore other value types to avoid rendering [object Object]
     }, []);
     const [selectedSuggestion, setSelectedSuggestion] = useState<MappedRecipe | null>(null);
     const [useMyPreferences, setUseMyPreferences] = useState(false);
@@ -2192,7 +2203,7 @@ export const Dashboard15 = () => {
                                                     <Input
                                                         size="md"
                                                         placeholder="Search for a meal... (e.g., pasta, chicken, salad)"
-                                                        value={typeof mealSearchText === 'string' ? mealSearchText : String(mealSearchText || '')}
+                                                        value={typeof mealSearchText === "string" ? mealSearchText : ""}
                                                         onChange={handleMealSearchChange}
                                                     autoFocus
                                                         className="text-base"
