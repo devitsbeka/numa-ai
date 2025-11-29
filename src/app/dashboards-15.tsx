@@ -2179,8 +2179,8 @@ export const Dashboard15 = () => {
                                                     <Input
                                                         size="md"
                                                         placeholder="Search for a meal... (e.g., pasta, chicken, salad)"
-                                                        value={mealSearchText}
-                                                        onChange={setMealSearchText}
+                                                        value={typeof mealSearchText === 'string' ? mealSearchText : ''}
+                                                        onChange={(value) => setMealSearchText(typeof value === 'string' ? value : '')}
                                                     autoFocus
                                                         className="text-base"
                                                         wrapperClassName="[&>div]:pr-10"
