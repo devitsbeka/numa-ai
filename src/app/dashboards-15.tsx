@@ -913,6 +913,14 @@ export const Dashboard15 = () => {
     
     // Meal search and filter state
     const [mealSearchText, setMealSearchText] = useState("");
+    
+    // Handler to ensure mealSearchText is always a string
+    const handleMealSearchChange = useCallback((value: unknown) => {
+        // React Aria Input onChange passes the value directly as a string
+        // But we'll be defensive and ensure it's always a string
+        const stringValue = typeof value === 'string' ? value : (value?.toString() || '');
+        setMealSearchText(stringValue);
+    }, []);
     const [selectedSuggestion, setSelectedSuggestion] = useState<MappedRecipe | null>(null);
     const [useMyPreferences, setUseMyPreferences] = useState(false);
     const [calorieThreshold, setCalorieThreshold] = useState<string | null>(null);
@@ -2179,8 +2187,8 @@ export const Dashboard15 = () => {
                                                     <Input
                                                         size="md"
                                                         placeholder="Search for a meal... (e.g., pasta, chicken, salad)"
-                                                        value={typeof mealSearchText === 'string' ? mealSearchText : ''}
-                                                        onChange={(value) => setMealSearchText(typeof value === 'string' ? value : '')}
+                                                        value={mealSearchText || ''}
+                                                        onChange={handleMealSearchChange}
                                                     autoFocus
                                                         className="text-base"
                                                         wrapperClassName="[&>div]:pr-10"
