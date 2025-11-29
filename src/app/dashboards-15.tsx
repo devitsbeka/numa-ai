@@ -918,8 +918,13 @@ export const Dashboard15 = () => {
     const handleMealSearchChange = useCallback((value: unknown) => {
         // React Aria Input onChange passes the value directly as a string
         // But we'll be defensive and ensure it's always a string
-        const stringValue = typeof value === 'string' ? value : (value?.toString() || '');
-        setMealSearchText(stringValue);
+        if (typeof value === 'string') {
+            setMealSearchText(value);
+        } else if (value != null) {
+            setMealSearchText(String(value));
+        } else {
+            setMealSearchText('');
+        }
     }, []);
     const [selectedSuggestion, setSelectedSuggestion] = useState<MappedRecipe | null>(null);
     const [useMyPreferences, setUseMyPreferences] = useState(false);
@@ -2187,7 +2192,7 @@ export const Dashboard15 = () => {
                                                     <Input
                                                         size="md"
                                                         placeholder="Search for a meal... (e.g., pasta, chicken, salad)"
-                                                        value={mealSearchText || ''}
+                                                        value={typeof mealSearchText === 'string' ? mealSearchText : String(mealSearchText || '')}
                                                         onChange={handleMealSearchChange}
                                                     autoFocus
                                                         className="text-base"
@@ -2255,7 +2260,7 @@ export const Dashboard15 = () => {
                                                                             image: meal.image || meal.ingredients[0]?.icon || '🍽️',
                                                                         };
                                                                         setSelectedSuggestion(mapped);
-                                                                        setMealSearchText(meal.name);
+                                                                        setMealSearchText(String(meal.name || ''));
                                                                         
                                                                         // Fetch full details if we have a spoonacular ID
                                                                         if (meal.spoonacularId) {
